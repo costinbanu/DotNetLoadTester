@@ -64,6 +64,7 @@ namespace DotNetLoadTester
             {
                 try
                 {
+                    await Task.Delay(RandomValue.Int(120000, 30000));
                     var request = new HttpRequestMessage(HttpMethod.Get, uri);
                     var result = await client.SendAsync(request);
                     result.EnsureSuccessStatusCode();
@@ -79,7 +80,6 @@ namespace DotNetLoadTester
                     }
                     var urlList = urls.ToList();
                     uri = urlList[RandomValue.Int(urlList.Count - 1, 0)];
-                    Thread.Sleep((1 + cur % 2) * 1000);
                 }
                 catch (Exception ex)
                 {
